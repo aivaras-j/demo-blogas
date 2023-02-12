@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${blog.title}"></title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div th:text="${blog.id}"></div>
+<div th:text="${blog.title}"></div>
+<div th:text="${blog.image}"></div>
+<div th:text="${blog.content}"></div>
+<p></p>
+<label for="comment">Palikite komentara:</label>
+<input type="text" id="comment" name="comment"></input>
+<button type="button">ADD</button>
+<p></p>
+<a th:href="@{/blogs}">
+  <div>BACK</div>
+</a>
+
+</body>
+</html>

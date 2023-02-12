@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blogs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<img src="https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" class="img">
+<div th:each="blog : ${blogs}">
+  <a th:href="@{/blogs/{id}(id=${blog.id})}">
+    <p></p>
+    <div th:text="${blog.title}"></div>
+  </a>
+</div>
+
+</body>
+</html>
