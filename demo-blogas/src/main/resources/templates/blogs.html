@@ -12,7 +12,14 @@
     <p></p>
     <div th:text="${blog.title}"></div>
   </a>
+  <br>
 </div>
-
 </body>
+<footer>
+  Total Blogs [[${totalBlogs}]] : Page [[${currentPage}]] of [[${totalPages}]]
+  <br>
+  <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+     <a th:href="@{'/blogs/page/' + ${i}}">[[${i}]]</a>
+    </span>
+</footer>
 </html>

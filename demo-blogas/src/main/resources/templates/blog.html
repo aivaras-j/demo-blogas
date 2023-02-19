@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${blog.title}"></title>
-  <link rel="stylesheet" href="style.css"/>
+  <title th:text="'Blog: ' + ${blog.title}"></title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div th:text="${blog.id}"></div>
+<div class="divas" th:text="${blog.id}"></div>
 <div th:text="${blog.title}"></div>
-<div th:text="${blog.image}"></div>
-<div th:text="${blog.content}"></div>
+<div th:text="${blog.type}"></div>
 <p></p>
 <label for="comment">Palikite komentara:</label>
 <input type="text" id="comment" name="comment"></input>
@@ -18,6 +17,5 @@
 <a th:href="@{/blogs}">
   <div>BACK</div>
 </a>
-
 </body>
 </html>

@@ -1,20 +1,31 @@
 package com.example.demoblogas;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@Data
+import jakarta.persistence.*;
+import lombok.*;
+
+
+@Entity
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Blog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    private Integer id;
 
+    @Column
     @NonNull
-    private final int id;
-    @NonNull
-    private final String title;
-    @NonNull
-    private final String image;
-    @NonNull
-    private final String content;
+    @Getter
+    private String title;
 
+    @Column
+    @NonNull
+    @Getter
+    private String type;
+
+    @Override
+    public String toString() {
+        return String.format("Blog: id=%s, title=%s, type=%s", id, title, type);
+    }
 }
