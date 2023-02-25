@@ -2,20 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link th:href="@{/style/main.css}" rel="stylesheet"/>
   <title th:text="'Blog: ' + ${blog.title}"></title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="divas" th:text="${blog.id}"></div>
+<div th:text="${blog.id}"></div>
 <div th:text="${blog.title}"></div>
-<div th:text="${blog.type}"></div>
+<div  class="divas" th:text="${blog.text}"></div>
+<img src="${blog.imageUrl}" alt="Blog image" class="img1">
+<p></p>
+<a th:href="@{/blogs}">
+  <div>BACK</div>
+</a>
 <p></p>
 <label for="comment">Palikite komentara:</label>
 <input type="text" id="comment" name="comment"></input>
 <button type="button">ADD</button>
 <p></p>
-<a th:href="@{/blogs}">
-  <div>BACK</div>
-</a>
 </body>
 </html>
