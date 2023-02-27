@@ -49,7 +49,7 @@ public class BlogController {
         if (errors.hasErrors())
             return "/blog/new";
 
-        Blog created = service.createBlog(blog);
+        Blog created = service.createAndEditBlog(blog);
         model.addAttribute("blog", created);
 
         return  "redirect:blogs/" + created.getId();
@@ -74,5 +74,32 @@ public class BlogController {
         service.deleteBlogById(id);
         return "redirect:/blogs";
     }
+
+    @GetMapping("/blogs/{id}/blogEdit")
+    public String showEditBlog(@PathVariable int id, Model model) {
+
+        model.addAttribute("blog", service.getBlogById(id));
+
+        logger.info("Edit blog");
+
+        return "blog/blogEdit";
+    }
+
+    @PostMapping("/blogEdit/{id}")
+    public String editedBlog(@PathVariable int id, @Valid Blog blog, BindingResult errors, Model model) {
+
+        logger.info("Edited blog: {}", blog);
+
+        if (errors.hasErrors()) {
+            return "blog/blogEdit";
+        }
+
+        Blog updated = service.createAndEditBlog(blog);
+        model.addAttribute("blog", updated);
+
+        return "redirect:/blogs";
+    }
+
+
 
 }

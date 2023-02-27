@@ -17,7 +17,7 @@ public class BlogsService {
         this.repository = repository;
     }
 
-    public Blog createBlog(Blog blog) {
+    public Blog createAndEditBlog(Blog blog) {
 
         return repository.save(blog);
     }

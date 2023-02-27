@@ -10,8 +10,11 @@
 <body>
 <div th:text="${blog.id}"></div>
 <div th:text="${blog.title}"></div>
-<div  class="divas" th:text="${blog.text}"></div>
-<img src="${blog.imageUrl}" alt="Blog image" class="img1">
+<img th:src="${blog.imageUrl}" alt="Blog image" class="img1">
+<div  class="blog-text" th:text="${blog.text}"></div>
+<p>
+  <a th:href="@{/blogs/{id}/blogEdit(id=${blog.id})}">Edit</a>
+</p>
 <p></p>
 <a th:href="@{/blogs}">
   <div>BACK</div>
