@@ -10,33 +10,37 @@ import java.util.List;
 @Service
 public class BlogsService {
 
-    private com.example.demoblogas.blog.BlogsRepository repository;
+    private BlogsRepository repository;
 
-    public BlogsService(com.example.demoblogas.blog.BlogsRepository repository) {
+    public BlogsService(BlogsRepository repository) {
 
         this.repository = repository;
     }
 
-    public com.example.demoblogas.blog.Blog createBlog(com.example.demoblogas.blog.Blog blog) {
+    public Blog createBlog(Blog blog) {
 
         return repository.save(blog);
     }
 
-    public com.example.demoblogas.blog.Blog getBlogById(int id) {
+    public Blog getBlogById(int id) {
 
         return repository.findById(id).get();
     }
 
-    public List<com.example.demoblogas.blog.Blog> getAllBlogs() {
+    public List<Blog> getAllBlogs() {
 
         return repository.findAll();
     }
 
-    public Page<com.example.demoblogas.blog.Blog> page(int currentPage) {
+    public Page<Blog> page(int currentPage) {
         PageRequest pageRequest = PageRequest.of(currentPage - 1, 2);
         return repository.findAll(pageRequest);
 
     }
+    public void deleteBlogById(int id) {
+        repository.deleteById(id);
+    }
+
 
 }
 

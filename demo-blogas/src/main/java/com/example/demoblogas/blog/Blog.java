@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.aspectj.bridge.IMessage;
 
 
 @Data
@@ -26,15 +27,15 @@ public class Blog {
     @NonNull
     @Size(
             min=50,
-            message = "Text lenght is too short"
+            message = "Text lenght is too short. Must be minimum 50 text simbols."
     )
     private String text;
 
-    @Column
+    @Column(columnDefinition = "blob")
     @NonNull
-
     @NotEmpty(message = "Blog imageUrl cannot be empty")
     private String imageUrl;
+
 
 
     @Override

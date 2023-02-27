@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link th:href="@{/style/main.css}" rel="stylesheet"/>
   <title>Blogs</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+  <link th:href="@{/style/main.css}" rel="stylesheet"/>
 </head>
 <body>
 <img src="https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" class="img">
@@ -12,6 +14,9 @@
     <p></p>
     <div th:text="${blog.title}"></div>
   </a>
+  <form th:action="@{/blogs/{id}(id=${blog.id})}" th:method="delete">
+    <button class="btn btn-danger" th:onclick="submit">Delete</button>
+  </form>
   <br>
 </div>
 <br>

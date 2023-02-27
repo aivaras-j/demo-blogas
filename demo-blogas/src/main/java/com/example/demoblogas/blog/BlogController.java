@@ -20,11 +20,11 @@ public class BlogController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    com.example.demoblogas.blog.BlogsService service;
+    BlogsService service;
 
     @GetMapping("/blogs/page/{pageNumber}")
     public String page(@PathVariable("pageNumber") int currentPage, Model model){
-        Page<com.example.demoblogas.blog.Blog> page = service.page(currentPage);
+        Page<Blog> page = service.page(currentPage);
 
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -43,13 +43,13 @@ public class BlogController {
 
 
     @PostMapping("/blogs")
-    public String createNewBlog(@Valid com.example.demoblogas.blog.Blog blog, BindingResult errors, Model model) {
+    public String createNewBlog(@Valid  Blog blog, BindingResult errors, Model model) {
         logger.info("New blog: {}", blog);
 
         if (errors.hasErrors())
             return "/blog/new";
 
-        com.example.demoblogas.blog.Blog created = service.createBlog(blog);
+        Blog created = service.createBlog(blog);
         model.addAttribute("blog", created);
 
         return  "redirect:blogs/" + created.getId();
@@ -57,7 +57,7 @@ public class BlogController {
 
     @GetMapping("blogs/new")
     public String showForm(Model model) {
-        model.addAttribute("blog", new com.example.demoblogas.blog.Blog());
+        model.addAttribute("blog", new Blog());
         return "/blog/new";
     }
 
@@ -66,6 +66,13 @@ public class BlogController {
 
         model.addAttribute("blog", service.getBlogById(id));
         return "/blog/blog";
+    }
+
+    @DeleteMapping("/blogs/{id}")
+    public String deleteBlog(@PathVariable int id) {
+        System.out.println(id);
+        service.deleteBlogById(id);
+        return "redirect:/blogs";
     }
 
 }
