@@ -8,10 +8,14 @@
   <link th:href="@{/style/main.css}" rel="stylesheet"/>
 </head>
 <body>
+<div class="container">
+  <header th:replace="~{blog/partials/header}"></header>
+</div>
 <div th:text="${blog.id}"></div>
 <div th:text="${blog.title}"></div>
 <img th:src="${blog.imageUrl}" alt="Blog image" class="img1">
 <div  class="blog-text" th:text="${blog.text}"></div>
+
 <p>
   <a th:href="@{/blogs/{id}/blogEdit(id=${blog.id})}">Edit</a>
 </p>
@@ -34,9 +38,24 @@
   <br/>
   <button type="submit" class="btn btn-primary">Add comment</button>
 </form>
+<div class="container comments-section">
+  <ul class="comments">
+    <li class="comment-li text-center" data-th-each="comment : ${comments}">
+      <div class="comment-owner-details text-left">
+        <h6 class="text-muted" data-th-text="${comment.name}"></h6>
+      </div>
+      <p class="text-muted" data-th-text="${comment.content}">comment content</p>
+      <form data-th-action="@{/comments/{id}(id=${comment.id})}" data-th-method="delete">
+        <button class="btn btn-danger" data-th-onclick="submit">delete</button>
+      </form>
+    </li>
+  </ul>
+</div>
 
 
+<div class="container my-5">
+  <footer th:replace="~{blog/partials/footer}"></footer>
 
-
+</div>
 </body>
 </html>

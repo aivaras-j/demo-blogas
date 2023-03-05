@@ -8,6 +8,12 @@
   <link th:href="@{/style/main.css}" rel="stylesheet"/>
 </head>
 <body>
+<div class="container">
+  <header th:replace="~{blog/partials/header}"></header>
+</div>
+<p>
+  Click <a th:href="@{/login}"> here </a> to login.
+</p>
 <img src="https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" class="img">
 <div th:each="blog : ${blogs}">
   <a th:href="@{/blogs/{id}(id=${blog.id})}">
@@ -27,11 +33,16 @@
 </body>
 <footer>
   Total Blogs [[${totalBlogs}]]
-  <br>
-  Page [[${currentPage}]] of [[${totalPages}]]
-  <br>
-  <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+<br>
+Page [[${currentPage}]] of [[${totalPages}]]
+<br>
+<span th:each="i: ${#numbers.sequence(1, totalPages)}">
      <a th:href="@{'/blogs/page/' + ${i}}">[[${i}]]</a>
     </span>
 </footer>
+
+<div class="container my-5">
+  <footer th:replace="~{blog/partials/footer}"></footer>
+
+</div>
 </html>

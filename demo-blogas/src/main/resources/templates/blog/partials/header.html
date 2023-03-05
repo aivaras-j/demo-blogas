@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login form</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+  <link th:href="@{/style/main.css}" rel="stylesheet"/>
+</head>
+
+<header class="d-flex flex-wrap  justify-content-md-between py-3 mb-3 border-bottom">
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li><a th:href="@{/blogs}" class="nav-link px-2 link-secondary">Home</a></li>
+    <li><a th:href="@{/about}" class="nav-link px-2 link-dark">About</a></li>
+  </ul>
+  <div class="col-md-3 text-end d-flex">
+    <button th:href="@{/login}" type="button" class="btn btn-outline-primary me-2 h-50" ><p data-th-text="#{header.login}"></p></button>
+    <button type="button" class="btn btn-primary h-50" th:href="@{/login}"><p data-th-text="#{header.sign-in}"></p></button>
+
+  <ul class="language-bar list-unstyled">
+    <li><a data-th-href="@{blogs?lang=lt}">LT</a></li>
+    <li><a data-th-href="@{blogs?lang=en}">EN</a></li>
+  </ul>
+  </div>
+</header>

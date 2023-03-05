@@ -100,6 +100,17 @@ public class BlogController {
         return "redirect:/blogs";
     }
 
+    @GetMapping("/about")
+    public String aboutPage(Model model) {
+
+        return "/blog/about";
+    }
+    @GetMapping("/login")
+    public String loginPage(Model model) {
+
+        return "/blog/login/login";
+    }
+
 
 
 }

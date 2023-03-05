@@ -27,6 +27,11 @@ public class CommentsService {
 
         return repository.findAll();
     }
+    public void deleteComment(Long id) {
+        repository.deleteById(id);
+    }
+
+
 }
 
 
