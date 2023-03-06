@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>10 sports blogs to motivate and inspire you</title>
+   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+   <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+   <link th:href="@{/style/main.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+<header th:replace="~{blog/partials/header}"></header>
+
+<p class="blog-text"> Get in touch …
+   Our global, sports client team are located in key markets, ready to respond to your research requirements.
+   To get in touch, please complete the contact form below to get a prompt response from the correct person.
+   Can’t wait for our research?
+   Download our latest white papers and reports.
+</p>
+   <div class="main-content">
+      <article id="post-739" class="post-739 page type-page status-publish hentry">
+         <h1 class="title">Contact</h1>
+         <section class="entry">
+         <div data-test="contact-form" class="wp-block-jetpack-contact-form-container">
+            <form method="post" class="contact-form commentsblock contact-conteiner d-flex align-items-end flex-column">
+               <div style="" class="grunion-field-name-wrap grunion-field-wrap">
+                  <label for="g739-name" class="grunion-field-label name">Name<span>(required)</span></label>
+                  <input type="text" name="g739-name" id="g739-name" value="" class="name  grunion-field contact" required="" aria-required="true">
+               </div>
+               <div style="" class="grunion-field-email-wrap grunion-field-wrap">
+                  <label for="g739-email" class="grunion-field-label email">Email<span>(required)</span></label>
+                  <input type="email" name="g739-email" id="g739-email" value="" class="email  grunion-field contact" required="" aria-required="true">
+               </div>
+               <div style="" class="grunion-field-textarea-wrap grunion-field-wrap">
+                  <label for="contact-form-comment-g739-comment" class="grunion-field-label textarea">Comment<span>(required)</span></label>
+                  <textarea style="" name="g739-comment" id="contact-form-comment-g739-comment" rows="10" class="textarea  grunion-field contact" required="" aria-required="true"></textarea>
+               </div>
+               <p class="contact-submit">
+                  <button type="submit" class="pushbutton-wide">Submit</button>		<input type="hidden" name="contact-form-id" value="739">
+                  <input type="hidden" name="action" value="grunion-contact-form">
+                  <input type="hidden" name="contact-form-hash" value="d62c464153ad9a215e267c2465919460ee2cfd3f">
+               </p>
+               <p style="display: none !important;"><label>Δ<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="1678094918972"><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>
+           </div>
+      </article>
+   </div>
+<footer th:replace="~{blog/partials/footer}"></footer>
+</div>
+</body>
+</html>

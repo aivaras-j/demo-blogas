@@ -8,18 +8,24 @@
   <link th:href="@{/style/main.css}" rel="stylesheet"/>
 </head>
 
-<header class="d-flex flex-wrap  justify-content-md-between py-3 mb-3 border-bottom">
+<header class=" d-flex justify-content-between pt-3 mt-3 border-bottom">
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-    <li><a th:href="@{/blogs}" class="nav-link px-2 link-secondary">Home</a></li>
-    <li><a th:href="@{/about}" class="nav-link px-2 link-dark">About</a></li>
+    <li><a th:href="@{/blogs}" class="nav-link px-2 link-secondary"><p data-th-text="#{header.home}"></p></a></li>
+    <li><a th:href="@{/contact}" class="nav-link px-2 link-dark"><p data-th-text="#{header.contact}"></p></a></li>
   </ul>
-  <div class="col-md-3 text-end d-flex">
-    <button th:href="@{/login}" type="button" class="btn btn-outline-primary me-2 h-50" ><p data-th-text="#{header.login}"></p></button>
-    <button type="button" class="btn btn-primary h-50" th:href="@{/login}"><p data-th-text="#{header.sign-in}"></p></button>
-
+  <div class="col-md-3 div-login">
+    <form action="/login" method="GET" class="login-sign">
+    <button th:href="@{/login}" type="submit" class="btn btn-outline-primary me-2 login" ><p data-th-text="#{header.login}"></p></button>
+    <button type="submit" class="btn btn-primary login" th:href="@{/login}"><p data-th-text="#{header.sign-in}"></p></button>
+    </form>
+  </div>
+    <div class="language">
   <ul class="language-bar list-unstyled">
-    <li><a data-th-href="@{blogs?lang=lt}">LT</a></li>
-    <li><a data-th-href="@{blogs?lang=en}">EN</a></li>
+    <li><a title="Lietuvių"  data-th-href="@{blogs?lang=lt}">
+      <img src="https://sandas.lt/wp-content/plugins/qtranslate-x/flags/lt.png" alt="Lietuvių">LT</a></li>
+    <li><a title="English" data-th-href="@{blogs?lang=en}">
+      <img src="https://sandas.lt/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English">EN</a></li>
   </ul>
   </div>
+
 </header>

@@ -100,10 +100,10 @@ public class BlogController {
         return "redirect:/blogs";
     }
 
-    @GetMapping("/about")
+    @GetMapping("/contact")
     public String aboutPage(Model model) {
 
-        return "/blog/about";
+        return "/blog/contact";
     }
     @GetMapping("/login")
     public String loginPage(Model model) {
