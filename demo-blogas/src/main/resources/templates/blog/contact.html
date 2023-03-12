@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-<header th:replace="~{blog/partials/header}"></header>
+<header th:replace="~{partials/header}"></header>
 
 <p class="blog-text"> Get in touch …
    Our global, sports client team are located in key markets, ready to respond to your research requirements.
@@ -36,15 +36,11 @@
                   <textarea style="" name="g739-comment" id="contact-form-comment-g739-comment" rows="10" class="textarea  grunion-field contact" required="" aria-required="true"></textarea>
                </div>
                <p class="contact-submit">
-                  <button type="submit" class="pushbutton-wide">Submit</button>		<input type="hidden" name="contact-form-id" value="739">
-                  <input type="hidden" name="action" value="grunion-contact-form">
-                  <input type="hidden" name="contact-form-hash" value="d62c464153ad9a215e267c2465919460ee2cfd3f">
+                  <button type="submit" class="btn btn-success">Submit</button>
                </p>
-               <p style="display: none !important;"><label>Δ<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="1678094918972"><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>
-           </div>
       </article>
    </div>
-<footer th:replace="~{blog/partials/footer}"></footer>
+<footer th:replace="~{partials/footer}"></footer>
 </div>
 </body>
 </html>

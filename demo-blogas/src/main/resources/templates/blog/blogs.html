@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
   <meta charset="UTF-8">
   <title>Blogs</title>
@@ -9,37 +11,40 @@
 </head>
 <body>
 <div class="container">
-  <header th:replace="~{blog/partials/header}"></header>
+  <header th:replace="~{partials/header}"></header>
 </div>
-<img src="https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" class="img">
+
+<div sec:authorize="isAuthenticated()">
+  <h1>Welcome, <span sec:authentication="name"></span>!(<span sec:authentication="principal.authorities"></span>)</h1>
+
+
+</div>
+
+<img src="https://as1.ftcdn.net/v2/jpg/01/93/12/84/1000_F_193128467_rINpXuCIdYW1n3m9eovl1tIEvw6B0Wth.jpg" class="img">
 <div th:each="blog : ${blogs}">
   <a th:href="@{/blogs/{id}(id=${blog.id})}">
     <p></p>
-    <div th:text="${blog.title}"></div>
+    <span th:text="${blog.id}"></span>
+    <span th:text="${blog.title}"></span>
   </a>
-  <form th:action="@{/blogs/{id}(id=${blog.id})}" th:method="delete">
+  <div sec:authorize="hasAuthority('ADMIN')" >
+  <form th:action="@{/blogs/{id}(id=${blog.id})}" th:method="delete" >
     <button class="btn btn-danger" th:onclick="submit">Delete</button>
   </form>
+  </div>
+
   <br>
 </div>
 <br>
 <br>
-<a href="/blogs/new">Create New Blog</a>
+<a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/blogs/new">Create New Blog</a>
 <br>
 <br>
 </body>
-<footer>
-  Total Blogs [[${totalBlogs}]]
-<br>
-Page [[${currentPage}]] of [[${totalPages}]]
-<br>
-<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-     <a th:href="@{'/blogs/page/' + ${i}}">[[${i}]]</a>
-    </span>
-</footer>
+<footer th:replace="~{partials/pagesfooter}"></footer>
 
 <div class="container my-5">
-  <footer th:replace="~{blog/partials/footer}"></footer>
+  <footer th:replace="~{partials/footer}"></footer>
 
 </div>
 </html>

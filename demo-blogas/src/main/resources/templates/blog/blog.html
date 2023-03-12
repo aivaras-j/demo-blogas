@@ -9,10 +9,10 @@
 </head>
 <body>
 <div class="container">
-  <header th:replace="~{blog/partials/header}"></header>
+  <header th:replace="~{partials/header}"></header>
 </div>
-<div th:text="${blog.id}"></div>
-<div th:text="${blog.title}"></div>
+
+<div><h2 th:text="${blog.title}"> </h2></div>
 <img th:src="${blog.imageUrl}" alt="Blog image" class="img1">
 <div  class="blog-text" th:text="${blog.text}"></div>
 
@@ -53,8 +53,9 @@
 </div>
 
 
+
 <div class="container my-5">
-  <footer th:replace="~{blog/partials/footer}"></footer>
+  <footer th:replace="~{partials/footer}"></footer>
 
 </div>
 </body>

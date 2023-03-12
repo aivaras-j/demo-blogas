@@ -28,13 +28,15 @@ public class CommentsController {
         this.repository = repository;
     }
 
-    @GetMapping("/blog/comments/{id}")
+    @GetMapping("/blogs/blog")
     public String getComments(Model model) {
 
         var comments = repository.findAll();
         model.addAttribute("comments", comments);
         model.addAttribute("comment", new Comment());
         return "/blog/blog";
+
+
     }
 
 
@@ -58,6 +60,8 @@ public class CommentsController {
         repository.deleteById(id);
         return "redirect:/blog/blogs";
     }
+
+
 
 
 }

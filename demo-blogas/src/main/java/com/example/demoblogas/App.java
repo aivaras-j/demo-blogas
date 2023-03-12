@@ -2,12 +2,17 @@ package com.example.demoblogas;
 
 import com.example.demoblogas.blog.Blog;
 import com.example.demoblogas.blog.BlogsService;
+import com.example.demoblogas.blogSecurity.Role;
+import com.example.demoblogas.blogSecurity.User.User;
+import com.example.demoblogas.blogSecurity.User.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 @SpringBootApplication
 public class App implements CommandLineRunner {
@@ -17,7 +22,11 @@ public class App implements CommandLineRunner {
 	@Autowired
 	BlogsService blogsService;
 
+	@Autowired
+	private UserRepository repository;
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(App.class, args);
 	}
 
@@ -42,13 +51,62 @@ public class App implements CommandLineRunner {
 				"and supervised oral supplementation protocols producing significant musculoskeletal sports health benefits.",
 				"https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" )));
 
-		logger.info("Add Blog2: {}", blogsService.createAndEditBlog(new Blog("OVERTRAINING MYTH: DON’T BELIEVE THE HYPE", "Often, as a keen sportsperson or when aspiring towards kickstarting your routine, you might", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=")));
+		logger.info("Add Blog2: {}", blogsService.createAndEditBlog(new Blog("UK: Who is the GOAT men’s footballer?", "Lionel Messi’s triumph at the 2022 FIFA\n" +
+				" World Cup in Qatar and the recent death of Pelé have both reignited the debate around who is the greatest men’s football player of all time. So who do fans think is the GOAT of football?\n" +
+				"We ran a poll on YouGov Surveys to find out.\n" +
+				"\n" +
+				"We asked British football followers to choose the greatest of all time from FourFourTwo Magazine’s top 25 players. Our data shows that Pelé is considered\n" +
+				" the “Greatest Of All Time” (GOAT) by almost a third (31%) of British fans. Lionel Messi gained a massive leg up in the Messi vs Ronaldo debate, with the\n" +
+				" Argentine coming in second place (27%). Three players came in a rather distant third: George Best – who Pelé himself once described as the best player\n" +
+				" in the world – won 5% of the vote, as did Diego Maradona and Messi’s long-time rival Cristiano Ronaldo. Bobby Charlton ranked fourth (3%), Zinedine Zidane\n" +
+				" ranked fifth (2%), and no other player got more than 1% of the vote.\n" +
+				"\n" +
+				"We also gave fans the opportunity to nominate footballers outside of the 25 options we offered. Among the write-in candidates were Bobby Moore, Alan Shearer,\n" +
+				" Matt Le Tissier, Steven Gerrard, and Nicklas “Lord” Bendtner.", "https://sport.yougov.com/wp-content/uploads/2023/03/Blog-GOAT.png")));
 
-		logger.info("Add Blog3: {}", blogsService.createAndEditBlog(new Blog("TYPES OF VITAMIN D IN OUR FOOD", "Two types of vitamin D are found in our food and supplements – D2 and D3. The only difference is the", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" )));
+		logger.info("Add Blog3: {}", blogsService.createAndEditBlog(new Blog("Brundle on Verstappen: \"I'm sure they had the motor turned right down\"", "For Red Bull Racing,\n" +
+				" it was the first since Abu Dhabi 2013 that two of its own cars started from the front row of the grid and actually scored a one-two. It is one of the examples that show\n" +
+				" Red Bull has started the season dominantly. Martin Brundle fears a monotonous season.\n" +
+				"\n" +
+				"It was not a trouble-free weekend for the Austrian racing stable. Max Verstappen complained about his RB19 during the first two free practice sessions and was quite dissatisfied.\n" +
+				" In the end, the 25-year-old driver did capture the position. After qualifying, Verstappen and Sergio Perez needed new oil intake pipes fitted and during the race there were some\n" +
+				" minor issues with downshifting.", "https://cdn.racingnews365.com/2023/Verstappen/_1125x633_crop_center-center_85_none/9077247/SI202303040357.webp?v=1678002348" )));
+
+		logger.info("Add Blog3: {}", blogsService.createAndEditBlog(new Blog("Brundle on Verstappen: \"I'm sure they had the motor turned right down\"", "For Red Bull Racing,\n" +
+				" it was the first since Abu Dhabi 2013 that two of its own cars started from the front row of the grid and actually scored a one-two. It is one of the examples that show\n" +
+				" Red Bull has started the season dominantly. Martin Brundle fears a monotonous season.\n" +
+				"\n" +
+				"It was not a trouble-free weekend for the Austrian racing stable. Max Verstappen complained about his RB19 during the first two free practice sessions and was quite dissatisfied.\n" +
+				" In the end, the 25-year-old driver did capture the position. After qualifying, Verstappen and Sergio Perez needed new oil intake pipes fitted and during the race there were some\n" +
+				" minor issues with downshifting.", "https://cdn.racingnews365.com/2023/Verstappen/_1125x633_crop_center-center_85_none/9077247/SI202303040357.webp?v=1678002348" )));
+		logger.info("Add Blog3: {}", blogsService.createAndEditBlog(new Blog("Brundle on Verstappen: \"I'm sure they had the motor turned right down\"", "For Red Bull Racing,\n" +
+				" it was the first since Abu Dhabi 2013 that two of its own cars started from the front row of the grid and actually scored a one-two. It is one of the examples that show\n" +
+				" Red Bull has started the season dominantly. Martin Brundle fears a monotonous season.\n" +
+				"\n" +
+				"It was not a trouble-free weekend for the Austrian racing stable. Max Verstappen complained about his RB19 during the first two free practice sessions and was quite dissatisfied.\n" +
+				" In the end, the 25-year-old driver did capture the position. After qualifying, Verstappen and Sergio Perez needed new oil intake pipes fitted and during the race there were some\n" +
+				" minor issues with downshifting.", "https://cdn.racingnews365.com/2023/Verstappen/_1125x633_crop_center-center_85_none/9077247/SI202303040357.webp?v=1678002348" )));
+
 
 		logger.info("Add Blog4: {}", blogsService.createAndEditBlog(new Blog("WHAT IS OVERTRAINING? ", "The figure above is from research focusing on illnesses like common colds that we’re more likely to pick up", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=" )));
 
 		logger.info("All Blogs: {}", blogsService.getAllBlogs());
 
-	}
+		repository.saveAll(
+				List.of(
+						new User("min", "min", Role.USER),
+						new User("ss", "ss", Role.ADMIN)
+
+				)
+		);
+////	@Override
+//	public void run(String... args) throws Exception {
+//		repository.saveAll(
+//				List.of(
+//						new User("min", "min", Role.USER),
+//						new User("ss", "maain", Role.ADMIN),
+//						new User("missn", "a", Role.USER)
+//				)
+//		);
+}
 }

@@ -22,7 +22,7 @@ public class BlogsService {
         return repository.save(blog);
     }
 
-    public Blog getBlogById(int id) {
+    public Blog getBlogById(Long id) {
 
         return repository.findById(id).get();
     }
@@ -33,11 +33,11 @@ public class BlogsService {
     }
 
     public Page<Blog> page(int currentPage) {
-        PageRequest pageRequest = PageRequest.of(currentPage - 1, 2);
+        PageRequest pageRequest = PageRequest.of(currentPage - 1, 4);
         return repository.findAll(pageRequest);
 
     }
-    public void deleteBlogById(int id) {
+    public void deleteBlogById(Long id) {
         repository.deleteById(id);
     }
 

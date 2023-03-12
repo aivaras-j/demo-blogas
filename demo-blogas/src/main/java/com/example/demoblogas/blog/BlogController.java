@@ -34,6 +34,9 @@ public class BlogController {
         return "/blog/blogs";
     }
 
+
+
+
     @GetMapping("/blogs")
     public String pages(Model model) {
 
@@ -62,21 +65,21 @@ public class BlogController {
     }
 
     @RequestMapping("/blogs/{id}")
-    public String blog(@PathVariable int id, Model model) {
+    public String blog(@PathVariable Long id, Model model) {
 
         model.addAttribute("blog", service.getBlogById(id));
         return "/blog/blog";
     }
 
     @DeleteMapping("/blogs/{id}")
-    public String deleteBlog(@PathVariable int id) {
+    public String deleteBlog(@PathVariable Long id) {
         System.out.println(id);
         service.deleteBlogById(id);
         return "redirect:/blogs";
     }
 
     @GetMapping("/blogs/{id}/blogEdit")
-    public String showEditBlog(@PathVariable int id, Model model) {
+    public String showEditBlog(@PathVariable Long id, Model model) {
 
         model.addAttribute("blog", service.getBlogById(id));
 
@@ -86,7 +89,7 @@ public class BlogController {
     }
 
     @PostMapping("/blogEdit/{id}")
-    public String editedBlog(@PathVariable int id, @Valid Blog blog, BindingResult errors, Model model) {
+    public String editedBlog(@PathVariable Long id, @Valid Blog blog, BindingResult errors, Model model) {
 
         logger.info("Edited blog: {}", blog);
 
@@ -105,11 +108,11 @@ public class BlogController {
 
         return "/blog/contact";
     }
-    @GetMapping("/login")
-    public String loginPage(Model model) {
-
-        return "/blog/login/login";
-    }
+//    @GetMapping("/login")
+//    public String loginPage(Model model) {
+//
+//        return "/blog/login/login";
+//    }
 
 
 

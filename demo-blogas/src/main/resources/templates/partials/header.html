@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <meta charset="UTF-8">
   <title>Login form</title>
@@ -12,11 +13,15 @@
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a th:href="@{/blogs}" class="nav-link px-2 link-secondary"><p data-th-text="#{header.home}"></p></a></li>
     <li><a th:href="@{/contact}" class="nav-link px-2 link-dark"><p data-th-text="#{header.contact}"></p></a></li>
+      <li><a th:href="@{/user/{id}/profile}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.profile}"></p></a></li>
+      <li><a th:href="@{/user/logout}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.logout}"></p></a></li>
   </ul>
-  <div class="col-md-3 div-login">
-    <form action="/login" method="GET" class="login-sign">
+  <div class="col-md-3 div-login btn-group">
+   <form action="/login" method="GET" class="login-sign">
     <button th:href="@{/login}" type="submit" class="btn btn-outline-primary me-2 login" ><p data-th-text="#{header.login}"></p></button>
-    <button type="submit" class="btn btn-primary login" th:href="@{/login}"><p data-th-text="#{header.sign-in}"></p></button>
+    </form>
+   <form action="/register" method="GET" class="login-sign">
+    <button type="submit" class="btn btn-primary login" th:href="@{/register}"><p data-th-text="#{header.sign-in}"></p></button>
     </form>
   </div>
     <div class="language">

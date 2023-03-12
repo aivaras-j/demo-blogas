@@ -2,6 +2,8 @@ package com.example.demoblogas.comments;
 
 import com.example.demoblogas.blog.Blog;
 import com.example.demoblogas.blog.BlogsRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +21,9 @@ public class CommentsService {
 
         return repository.save(comment);
     }
-    public Comment getCommentById(int id) {
+    public Comment getCommentById(Long id) {
 
-        return repository.findById((long) id).get();
+        return repository.findById((Long) id).get();
     }
     public List<Comment> getAllComments() {
 
@@ -33,5 +35,7 @@ public class CommentsService {
 
 
 }
+
+
 
 

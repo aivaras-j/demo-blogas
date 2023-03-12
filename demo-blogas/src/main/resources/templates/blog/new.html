@@ -2,11 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Login form</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
     <link th:href="@{/style/main.css}" rel="stylesheet"/>
-    <title>New Blog</title>
-
 </head>
 <body>
+<div class="container">
+    <header th:replace="~{partials/header}"></header>
+</div>
 <h1>New blog</h1>
 <form class="input-form" action="#" th:action="@{/blogs}" th:object="${blog}" method="post">
     <p>Title: <input type="text" th:field="*{title}" class="create-input"/></p>
@@ -26,7 +30,10 @@
     </a>
 </form>
 
-
-
 </body>
+
+<div class="container my-5">
+    <footer th:replace="~{partials/footer}"></footer>
+
+</div>
 </html>
