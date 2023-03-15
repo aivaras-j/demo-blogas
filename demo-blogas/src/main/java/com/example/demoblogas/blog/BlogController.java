@@ -47,13 +47,15 @@ public class BlogController {
 
     @PostMapping("/blogs")
     public String createNewBlog(@Valid  Blog blog, BindingResult errors, Model model) {
-        logger.info("New blog: {}", blog);
+
 
         if (errors.hasErrors())
             return "/blog/new";
 
         Blog created = service.createAndEditBlog(blog);
         model.addAttribute("blog", created);
+
+        logger.info("New blog: {}", blog);
 
         return  "redirect:blogs/" + created.getId();
     }
@@ -65,21 +67,21 @@ public class BlogController {
     }
 
     @RequestMapping("/blogs/{id}")
-    public String blog(@PathVariable Long id, Model model) {
+    public String blog(@PathVariable Integer id, Model model) {
 
         model.addAttribute("blog", service.getBlogById(id));
         return "/blog/blog";
     }
 
     @DeleteMapping("/blogs/{id}")
-    public String deleteBlog(@PathVariable Long id) {
+    public String deleteBlog(@PathVariable Integer id) {
         System.out.println(id);
         service.deleteBlogById(id);
         return "redirect:/blogs";
     }
 
     @GetMapping("/blogs/{id}/blogEdit")
-    public String showEditBlog(@PathVariable Long id, Model model) {
+    public String showEditBlog(@PathVariable Integer id, Model model) {
 
         model.addAttribute("blog", service.getBlogById(id));
 

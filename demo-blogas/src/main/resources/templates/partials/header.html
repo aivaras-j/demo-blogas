@@ -17,8 +17,8 @@
       <li><a th:href="@{/user/logout}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.logout}"></p></a></li>
   </ul>
   <div class="col-md-3 div-login btn-group">
-   <form action="/login" method="GET" class="login-sign">
-    <button th:href="@{/login}" type="submit" class="btn btn-outline-primary me-2 login" ><p data-th-text="#{header.login}"></p></button>
+   <form action="/user/login" method="GET" class="login-sign">
+    <button th:href="@{/user/login}" type="submit" class="btn btn-outline-primary me-2 login" ><p data-th-text="#{header.login}"></p></button>
     </form>
    <form action="/register" method="GET" class="login-sign">
     <button type="submit" class="btn btn-primary login" th:href="@{/register}"><p data-th-text="#{header.sign-in}"></p></button>

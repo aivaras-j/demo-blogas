@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,6 +23,7 @@ public class CustomSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+  //      return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -40,21 +42,31 @@ public class CustomSecurityConfig {
         http.authenticationProvider(authenticationProvider());
 
         return http.csrf().disable()
-                .authorizeHttpRequests().requestMatchers("/", "/blogs", "/blogs/{id}", "/style/**", "/resources/**", "/webjars/**", "/error", "/register", "/blogs/page/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/", "/blogs", "/blogs/{id}", "/style/**", "/resources/**", "/webjars/**", "/error", "/register",
+                        "/blogs/page/**", "/h2-console/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/user/**").hasAuthority("USER")
                 .and()
                 .authorizeHttpRequests().requestMatchers("/admin/**").hasAuthority("ADMIN")
+           //     .and()
+          //      .authorizeHttpRequests().requestMatchers("/blogs/**").hasAnyAuthority("ADMIN, USER")
                 .anyRequest()
                 .authenticated()
                 .and()
                   .formLogin()
                   .loginPage("/user/login")
-                  .usernameParameter("username")
                   .loginProcessingUrl("/user/login")
+                  .usernameParameter("username")
                   .defaultSuccessUrl("/blogs", true)
                   .permitAll()
                 .and()
+//                 .formLogin()
+//                 .loginPage("/admin/admin/login")
+//                 .usernameParameter("username")
+//                 .loginProcessingUrl("/admin/admin/login")
+//                . defaultSuccessUrl("/blogs")
+//                 .permitAll()
+//                .and()
                 .logout()
                 .logoutUrl("/user/logout")
                 .logoutSuccessUrl("/blogs")

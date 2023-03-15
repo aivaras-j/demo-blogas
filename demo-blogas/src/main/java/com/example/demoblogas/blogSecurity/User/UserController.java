@@ -44,9 +44,14 @@ public class UserController {
     }
 
 //    @GetMapping("/blogs/user")
-//    public String aboutPage(Model model) {
+//    public String userPage(Model model) {
 //
 //        return "/blog/blogs";
+//    }
+//
+//    @GetMapping("/user/login/success")
+//    public String showBlogPage(Model model) {
+//        return "blog/blog";
 //    }
 
 //    @GetMapping("/blogs/user/{id}")

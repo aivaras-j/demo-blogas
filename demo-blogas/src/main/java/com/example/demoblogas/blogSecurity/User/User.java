@@ -20,11 +20,11 @@ public class User {
     private Integer id;
 
     @NonNull
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = true, length = 100)
     private String username;
 
     @NonNull
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @NonNull

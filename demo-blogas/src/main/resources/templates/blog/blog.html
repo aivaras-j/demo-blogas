@@ -25,8 +25,17 @@
 </a>
 
 <p></p>
+<p>
+  <a th:href="@{/blogs/{id}/comment(id=${blog.id})}">COMMENT</a>
+</p>
 
 <h2>Comments</h2>
+
+
+<div th:each="comment : ${blog.comments}">
+  <span th:text="${comment.name}"></span>:<span th:text="${comment.content}"></span>
+</div>
+
 
 <form th:action="@{/comments}" method="post" th:object="${comment}">
   <input type="hidden" name="blogId" th:value="${blog.id}"  >
@@ -38,16 +47,13 @@
   <br/>
   <button type="submit" class="btn btn-primary">Add comment</button>
 </form>
-<div class="container comments-section">
+<div th:if="${comment}" class="container comments-section">
   <ul class="comments">
-    <li class="comment-li text-center" data-th-each="comment : ${comments}">
+    <li class="comment-li text-center">
       <div class="comment-owner-details text-left">
         <h6 class="text-muted" data-th-text="${comment.name}"></h6>
       </div>
       <p class="text-muted" data-th-text="${comment.content}">comment content</p>
-      <form data-th-action="@{/comments/{id}(id=${comment.id})}" data-th-method="delete">
-        <button class="btn btn-danger" data-th-onclick="submit">delete</button>
-      </form>
     </li>
   </ul>
 </div>

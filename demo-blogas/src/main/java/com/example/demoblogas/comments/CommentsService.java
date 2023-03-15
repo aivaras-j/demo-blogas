@@ -21,15 +21,15 @@ public class CommentsService {
 
         return repository.save(comment);
     }
-    public Comment getCommentById(Long id) {
+    public Comment getCommentById(Integer id) {
 
-        return repository.findById((Long) id).get();
+        return repository.findById((Integer) id).get();
     }
     public List<Comment> getAllComments() {
 
         return repository.findAll();
     }
-    public void deleteComment(Long id) {
+    public void deleteComment(Integer id) {
         repository.deleteById(id);
     }
 

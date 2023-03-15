@@ -1,5 +1,6 @@
 package com.example.demoblogas.comments;
 
+import com.example.demoblogas.blog.Blog;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,31 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CommentsController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    CommentsService service;
+    CommentsService commentsService;
 
 
-
-    private CommentsRepository repository;
+    @Autowired
+    CommentsRepository commentsRepository;
 
     @Autowired
     public CommentsController(@Autowired CommentsRepository repository) {
-        this.repository = repository;
+        this.commentsRepository = repository;
     }
 
     @GetMapping("/blogs/blog")
     public String getComments(Model model) {
 
-        var comments = repository.findAll();
+        var comments = commentsRepository.findAll();
         model.addAttribute("comments", comments);
         model.addAttribute("comment", new Comment());
         return "/blog/blog";
@@ -39,27 +37,36 @@ public class CommentsController {
 
     }
 
+    @GetMapping("/blogs/{id}/comment")
+    public String showCommentBlog(Model model) {
+
+        model.addAttribute("comment", new Comment());
+
+        logger.info("Comment blog");
+
+        return "comments/comment";
+    }
+
 
     @PostMapping("/comments")
-    public String createNewComment(@Valid Comment comment, BindingResult errors, Model model) {
-
-        logger.info("New comment: {}", comment);
+    public String createNewComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult errors, Model model) {
 
         if (errors.hasErrors())
-            return "/blog/blogs";
+            return "comments/comment";
 
-        Comment created = service.createComment(comment);
-        model.addAttribute("comment", created);
+       commentsRepository.save(comment);
+//        Comment created = commentsService.createComment(comment);
+//        model.addAttribute("comment", created);
+        logger.info("New comment: {}", comment);
 
-        return  "redirect:/blogs/" + created.getId();
-
+        return  "redirect:blogs/";
     }
-    @DeleteMapping("/comments/{id}")
-    public String createComment(@PathVariable Long id) {
-        System.out.println(id);
-        repository.deleteById(id);
-        return "redirect:/blog/blogs";
-    }
+//    @DeleteMapping("/comments/{id}")
+//    public String createComment(@PathVariable Integer id) {
+//        System.out.println(id);
+//        repository.deleteById(id);
+//        return "redirect:/blog/blogs";
+//    }
 
 
 
