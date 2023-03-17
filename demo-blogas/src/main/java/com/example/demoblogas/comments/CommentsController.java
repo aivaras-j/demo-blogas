@@ -1,6 +1,7 @@
 package com.example.demoblogas.comments;
 
 import com.example.demoblogas.blog.Blog;
+import com.example.demoblogas.blog.BlogsService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,9 @@ public class CommentsController {
     @Autowired
     CommentsService commentsService;
 
+    @Autowired
+    BlogsService blogsService;
+
 
     @Autowired
     CommentsRepository commentsRepository;
@@ -26,20 +30,11 @@ public class CommentsController {
         this.commentsRepository = repository;
     }
 
-    @GetMapping("/blogs/blog")
-    public String getComments(Model model) {
-
-        var comments = commentsRepository.findAll();
-        model.addAttribute("comments", comments);
-        model.addAttribute("comment", new Comment());
-        return "/blog/blog";
-
-
-    }
 
     @GetMapping("/blogs/{id}/comment")
     public String showCommentBlog(Model model) {
-
+        var comments = commentsRepository.findAll();
+        model.addAttribute("comments", comments);
         model.addAttribute("comment", new Comment());
 
         logger.info("Comment blog");
@@ -48,27 +43,22 @@ public class CommentsController {
     }
 
 
-    @PostMapping("/comments")
-    public String createNewComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult errors, Model model) {
-
-        if (errors.hasErrors())
+    @PostMapping("/blogs/{id}/comment")
+    public String createNewComment(@PathVariable int id, @Valid Comment comment, BindingResult errors) {
+        if (errors.hasErrors()) {
             return "comments/comment";
-
-       commentsRepository.save(comment);
-//        Comment created = commentsService.createComment(comment);
-//        model.addAttribute("comment", created);
-        logger.info("New comment: {}", comment);
-
+        }
+        logger.info("Comment: {}", comment);
+        Blog blog = blogsService.getBlogById(id);
+        if(blog == null){
+            return "redirect:/blogs";
+        }
+        comment.setBlog(blog);
+        commentsRepository.save(comment);
+        blog.addComment(comment);
+        logger.info("Blog comment: {}", blog);
         return  "redirect:blogs/";
     }
-//    @DeleteMapping("/comments/{id}")
-//    public String createComment(@PathVariable Integer id) {
-//        System.out.println(id);
-//        repository.deleteById(id);
-//        return "redirect:/blog/blogs";
-//    }
-
-
 
 
 }

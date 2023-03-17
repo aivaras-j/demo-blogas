@@ -83,3 +83,13 @@ width: 230px;
      width: 250px;
 }
 
+
+
+.form-error {
+    border: 2px solid red;
+}
+
+.comment-form-input {
+    margin-bottom: 10px;
+}
+

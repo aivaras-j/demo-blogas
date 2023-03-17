@@ -12,13 +12,13 @@
     <header th:replace="~{partials/header}"></header>
 </div>
 <h1>New Comment</h1>
-<form class="input-form" action="#" th:action="@{/comments}" th:object="${comment}" method="post">
+
+
+
+
+<form class="input-form" action="#" th:action="@{/blogs/{id}/comment(id=${comment.id})}" th:object="${comment}" method="post">
     <p>Title: <input type="text" th:field="*{name}" class="create-input"/></p>
-
-
-
     <p>Content:<textarea name="content" type="text" th:field="*{content}" class="text-input" required></textarea></p>
-
     <p>
         <input type="submit" value="Submit"/>
         <input type="reset" value="Reset"/>
@@ -27,6 +27,9 @@
         <div>BACK</div>
     </a>
 </form>
+
+
+
 
 </body>
 

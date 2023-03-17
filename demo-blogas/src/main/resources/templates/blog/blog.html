@@ -37,6 +37,23 @@
 </div>
 
 
+
+<div class="container comments-section">
+  <ul>
+    <li class="comment-li" data-th-each="comment : ${blog.comments}">
+      <div class="comment-container" id="${comment.id}">
+        <div class="comment-owner-details">
+          <h6 class="text-muted" data-th-text="${comment.name}"></h6>
+        </div>
+        <p class="text-muted" data-th-text="${comment.content}">comment content</p>
+        <form data-th-action="@{/comments/{id}(id=${comment.id})}" data-th-method="delete">
+          <button class="btn btn-danger" data-th-onclick="submit">delete</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+
 <form th:action="@{/comments}" method="post" th:object="${comment}">
   <input type="hidden" name="blogId" th:value="${blog.id}"  >
   <label for="name">Name:</label>
