@@ -147,10 +147,11 @@ public class App implements CommandLineRunner {
 		Comment komentaras5 = new Comment("penktas", "ttttttttt");
 
 		blogas1.addComment(komentaras1);
+		blogas1.addComment(komentaras5);
 		blogas2.addComment(komentaras2);
 		blogas3.addComment(komentaras3);
 		blogas4.addComment(komentaras4);
-		blogas5.addComment(komentaras5);
+
 
 //		commentsRepository.save(komentaras1);
 //		commentsRepository.save(komentaras2);

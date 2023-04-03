@@ -21,9 +21,9 @@ public class UserService {
 
         return userRepository.findById(id).get();
     }
-    public User getUsergById(Integer id) {
-
-        return userRepository.findById(id).get();
-    }
+//    public User getUsergById(Integer id) {
+//
+//        return userRepository.findById(id).get();
+//    }
 }
 

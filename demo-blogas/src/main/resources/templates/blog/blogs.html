@@ -15,7 +15,8 @@
 </div>
 
 <div sec:authorize="isAuthenticated()">
-  <h1>Welcome, <span sec:authentication="name"></span>!(<span sec:authentication="principal.authorities"></span>)</h1>
+  <h1>Welcome, </span><span th:text="${#strings.replace(#strings.replace(#authentication.getAuthorities(), '[', ''), ']', '')}"></span> <span sec:authentication="name"></span>!
+    </h1>
 
 
 </div>

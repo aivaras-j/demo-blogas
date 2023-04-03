@@ -57,7 +57,7 @@ public class CommentsController {
         commentsRepository.save(comment);
         blog.addComment(comment);
         logger.info("Blog comment: {}", blog);
-        return  "redirect:blogs/";
+        return  "redirect:/blog/blog";
     }
 
 
