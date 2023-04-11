@@ -66,9 +66,8 @@ public class BlogController {
         return "/blog/new";
     }
 
-    @RequestMapping("/blogs/{id}")
-    public String blog(@PathVariable Integer id, Model model) {
-
+    @GetMapping("/blogs/{id}")
+    public String blog(@PathVariable(value = "id") Integer id, Model model) {
         model.addAttribute("blog", service.getBlogById(id));
         return "/blog/blog";
     }
