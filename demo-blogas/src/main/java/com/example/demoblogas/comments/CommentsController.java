@@ -44,7 +44,7 @@ public class CommentsController {
 
 
     @PostMapping("/blogs/{id}/comment")
-    public String createNewComment(@PathVariable int id, @Valid Comment comment, BindingResult errors) {
+    public String createNewComment(@PathVariable("id") int id, @Valid Comment comment, BindingResult errors) {
         if (errors.hasErrors()) {
             return "comments/comment";
         }
@@ -62,3 +62,4 @@ public class CommentsController {
 
 
 }
+
