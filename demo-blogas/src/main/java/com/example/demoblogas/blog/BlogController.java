@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import java.lang.Long;
 
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +58,7 @@ public class BlogController {
 
         logger.info("New blog: {}", blog);
 
-        return  "redirect:blogs/" + created.getId();
+        return  "redirect:/blogs/" + created.getId();
     }
 
     @GetMapping("blogs/new")
@@ -67,20 +68,19 @@ public class BlogController {
     }
 
     @GetMapping("/blogs/{id}")
-    public String blog(@PathVariable(value = "id") Integer id, Model model) {
+    public String blog(@PathVariable("id") Long id, Model model) {
         model.addAttribute("blog", service.getBlogById(id));
         return "/blog/blog";
     }
 
     @DeleteMapping("/blogs/{id}")
-    public String deleteBlog(@PathVariable Integer id) {
-        System.out.println(id);
+    public String deleteBlog(@PathVariable Long id) {
         service.deleteBlogById(id);
         return "redirect:/blogs";
     }
 
     @GetMapping("/blogs/{id}/blogEdit")
-    public String showEditBlog(@PathVariable Integer id, Model model) {
+    public String showEditBlog(@PathVariable Long id, Model model) {
 
         model.addAttribute("blog", service.getBlogById(id));
 
@@ -101,7 +101,7 @@ public class BlogController {
         Blog updated = service.createAndEditBlog(blog);
         model.addAttribute("blog", updated);
 
-        return "redirect:/blogs";
+        return "redirect:/blogs/" + updated.getId();
     }
 
     @GetMapping("/contact")

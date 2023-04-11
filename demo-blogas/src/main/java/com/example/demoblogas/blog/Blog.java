@@ -22,7 +22,7 @@ import java.util.Set;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column
     @NonNull
@@ -63,7 +63,7 @@ public class Blog {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -93,6 +93,8 @@ public class Blog {
                 ", comments=" + comments +
                 '}';
     }
+
+
 
     //    @Override
 //    public String toString() {
