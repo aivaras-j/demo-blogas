@@ -36,8 +36,7 @@
         <div class="comment-owner-details">
           <h6 class="text-muted" data-th-text="${comment.name}"></h6>
         </div>
-        php
-        Copy code
+
         <form data-th-action="@{/comments/{id}(id=${comment.id})}" data-th-method="delete">
           <button class="btn btn-danger" data-th-onclick="submit">delete</button>
         </form>

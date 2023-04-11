@@ -32,7 +32,7 @@ public class CommentsController {
 
 
     @GetMapping("/blogs/{id}/comment")
-    public String showCommentBlog(Model model) {
+    public String showCommentBlog(@PathVariable ("id") int id, Model model) {
         var comments = commentsRepository.findAll();
         model.addAttribute("comments", comments);
         model.addAttribute("comment", new Comment());
@@ -44,7 +44,7 @@ public class CommentsController {
 
 
     @PostMapping("/blogs/{id}/comment")
-    public String createNewComment(@PathVariable("id") Long id, @Valid Comment comment, BindingResult errors) {
+    public String createNewComment(@PathVariable("id") int id, @Valid Comment comment, BindingResult errors) {
         if (errors.hasErrors()) {
             return "comments/comment";
         }

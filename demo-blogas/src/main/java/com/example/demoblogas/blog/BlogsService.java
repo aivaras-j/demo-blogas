@@ -22,9 +22,9 @@ public class BlogsService {
         return repository.save(blog);
     }
 
-    public Blog getBlogById(Long id) {
+    public Blog getBlogById(Integer id) {
 
-        return repository.findById(id);
+        return repository.findById(id).get();
     }
 
     public List<Blog> getAllBlogs() {
@@ -37,7 +37,7 @@ public class BlogsService {
         return repository.findAll(pageRequest);
 
     }
-    public void deleteBlogById(Long id) {
+    public void deleteBlogById(Integer id) {
         repository.deleteById(id);
     }
 

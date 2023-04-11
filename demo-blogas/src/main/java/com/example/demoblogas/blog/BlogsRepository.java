@@ -7,8 +7,8 @@ import java.util.List;
 
 
 public interface BlogsRepository extends JpaRepository<Blog, Integer> {
-    Blog findById(Long id);
+    Blog findById(int id);
 
 
-    void deleteById(Long id);
+    void deleteById(int id);
 }
