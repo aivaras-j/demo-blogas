@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.aspectj.bridge.IMessage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -42,7 +44,7 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<Comment> comments = new HashSet();
+    private List<Comment> comments = new ArrayList<>();
 
     public Blog() {
     }
@@ -52,6 +54,7 @@ public class Blog {
         this.title = title;
         this.text = text;
         this.imageUrl = imageUrl;
+        this.comments = new ArrayList<>();
     }
 
     public void addComment(Comment comment) {
@@ -76,8 +79,8 @@ public class Blog {
         return imageUrl;
     }
 
-    public Set<Comment> getComment() {
-        return comments;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
