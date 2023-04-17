@@ -23,13 +23,13 @@
 
 <img src="https://as1.ftcdn.net/v2/jpg/01/93/12/84/1000_F_193128467_rINpXuCIdYW1n3m9eovl1tIEvw6B0Wth.jpg" class="img">
 <div th:each="blog : ${blogs}">
-  <a th:href="@{/blogs/{id}(id=${blog.id})}">
+  <a th:href="@{/blogs/blog/{id}(id=${blog.id})}">
     <p></p>
     <span th:text="${blog.id}"></span>
     <span th:text="${blog.title}"></span>
   </a>
   <div sec:authorize="hasAuthority('ADMIN')" >
-  <form th:action="@{/blogs/{id}(id=${blog.id})}" th:method="delete" >
+  <form th:action="@{/blogs/blog/{id}(id=${blog.id})}" th:method="delete" >
     <button class="btn btn-danger" th:onclick="submit">Delete</button>
   </form>
   </div>
@@ -38,7 +38,7 @@
 </div>
 <br>
 <br>
-<a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/blogs/new">Create New Blog</a>
+<a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/blogs/blog/new">Create New Blog</a>
 <br>
 <br>
 </body>

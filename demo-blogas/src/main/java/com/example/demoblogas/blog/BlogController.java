@@ -51,28 +51,28 @@ public class BlogController {
 
         logger.info("New blog: {}", blog);
 
-        return "redirect:/blogs/" + created.getId();
+        return "redirect:/blogs/blog/" + created.getId();
     }
 
-    @GetMapping("/new")
+    @GetMapping("/blog/new")
     public String showForm(Model model) {
         model.addAttribute("blog", new Blog());
         return "blog/new";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/blog/{id}")
     public String blog(@PathVariable("id") int id, Model model) {
         model.addAttribute("blog", service.getBlogById(id));
         return "blog/blog";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/blog/{id}")
     public String deleteBlog(@PathVariable("id") int id) {
         service.deleteBlogById(id);
         return "redirect:/blogs";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/blog/{id}/edit")
     public String showEditBlog(@PathVariable("id") int id, Model model) {
         model.addAttribute("blog", service.getBlogById(id));
         logger.info("Edit blog");
@@ -80,7 +80,7 @@ public class BlogController {
         return "blog/blogEdit";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/blog/{id}/edit")
     public String editedBlog(@PathVariable("id") int id, @Valid Blog blog, BindingResult errors, Model model) {
         logger.info("Edited blog: {}", blog);
 
@@ -91,19 +91,13 @@ public class BlogController {
         Blog updated = service.createAndEditBlog(blog);
         model.addAttribute("blog", updated);
 
-        return "redirect:/blogs/" + updated.getId();
+        return "redirect:/blogs/blog/" + updated.getId();
     }
 
     @GetMapping("/contact")
     public String aboutPage(Model model) {
         return "blog/contact";
     }
-//    @GetMapping("/login")
-//    public String loginPage(Model model) {
-//
-//        return "/blog/login/login";
-//    }
-
 
 
 }

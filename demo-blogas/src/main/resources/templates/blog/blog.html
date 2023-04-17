@@ -15,14 +15,14 @@
 <img th:src="${blog.imageUrl}" alt="Blog image" class="img1">
 <div  class="blog-text" th:text="${blog.text}"></div>
 <p>
-  <a th:href="@{/blogs/{id}/blogEdit(id=${blog.id})}">Edit</a>
+  <a th:href="@{/blogs/blog/{id}/edit(id=${blog.id})}">Edit</a>
 </p>
 <p></p>
 <a th:href="@{/blogs}">
   <div>BACK</div>
 </a>
 <p></p>
-<a th:href="@{/blogs/{id}/comment(id=${blog.id})}">COMMENT</a>
+<a th:href="@{/blogs/blog/{id}/comment(id=${blog.id})}">COMMENT</a>
 <h2>Comments</h2>
 <div th:each="blog : ${blogs}">
   <div th:each="comment : ${blog.comments}">

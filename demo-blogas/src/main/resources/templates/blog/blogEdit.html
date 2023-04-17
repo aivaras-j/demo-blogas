@@ -12,7 +12,7 @@
     <header th:replace="~{partials/header}"></header>
 </div>
 <h1>Edit Blog</h1>
-<form class="input-form" action="#" th:action="@{'/blogEdit/'+${id}}" th:object="${blog}" method="post">
+<form class="input-form" th:action="@{/blogs/blog/{id}/edit(id=${blog.id})}" th:object="${blog}" method="POST">
     <p>Title: <input type="text" th:field="*{title}" class="create-input"/></p>
     <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-color">Title error</div>
 

@@ -31,7 +31,7 @@ public class CommentsController {
     }
 
 
-    @GetMapping("/blogs/{id}/comment")
+    @GetMapping("/blogs/blog/{id}/comment")
     public String showCommentBlog(@PathVariable ("id") int id, Model model) {
         var comments = commentsRepository.findAll();
         model.addAttribute("comments", comments);
@@ -43,8 +43,8 @@ public class CommentsController {
     }
 
 
-    @PostMapping("/blogs/{id}/comment")
-    public String createNewComment(@PathVariable("id") int id, @Valid Comment comment, BindingResult errors) {
+    @PostMapping("/blogs/blog/{id}/comment")
+    public String createNewComment(@PathVariable("id") Integer id, @Valid Comment comment, BindingResult errors) {
         if (errors.hasErrors()) {
             return "comments/comment";
         }
@@ -57,8 +57,9 @@ public class CommentsController {
         commentsRepository.save(comment);
         blog.addComment(comment);
         blogsService.createAndEditBlog(blog);
+        logger.info("Blog comment: {}", comment);
         logger.info("Blog comment: {}", blog);
-        return  "redirect:/blogs/{id}";
+        return  "redirect:/blogs";
     }
 
 
