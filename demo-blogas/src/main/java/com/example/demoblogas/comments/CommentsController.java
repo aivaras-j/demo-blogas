@@ -44,13 +44,13 @@ public class CommentsController {
 
 
     @PostMapping("/blogs/blog/{id}/comment")
-    public String createNewComment(@PathVariable("id") Integer id, @Valid Comment comment, BindingResult errors) {
+    public String createNewComment(@PathVariable("id") Integer id, @Valid @ModelAttribute("comment") Comment comment, BindingResult errors) {
         if (errors.hasErrors()) {
             return "comments/comment";
         }
         logger.info("Comment: {}", comment);
         Blog blog = blogsService.getBlogById(id);
-        if(blog == null){
+        if (blog == null) {
             return "redirect:/blogs";
         }
         comment.setBlog(blog);
@@ -59,7 +59,7 @@ public class CommentsController {
         blogsService.createAndEditBlog(blog);
         logger.info("Blog comment: {}", comment);
         logger.info("Blog comment: {}", blog);
-        return  "redirect:/blogs";
+        return "redirect:/blogs/blog/" + id + "/comment";
     }
 
 
