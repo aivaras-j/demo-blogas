@@ -14,8 +14,8 @@
 <h1>New Comment</h1>
 
 
-<form class="input-form" action="#" th:action="@{/blogs/blog/{id}/comment}" th:object="${comment}" method="post">
-    <p>Title: <input type="text" th:field="*{name}" class="create-input"/></p>
+<form class="input-form" th:action="@{/blogs/blog/{id}/comment (id=${blog.id})}" th:object="${comment}" method="POST">
+    <p>Name: <input type="text" th:field="*{name}" class="create-input"/></p>
     <p>Content:<textarea name="content" type="text" th:field="*{content}" class="text-input" required></textarea></p>
     <p>
         <input type="submit" value="Submit"/>

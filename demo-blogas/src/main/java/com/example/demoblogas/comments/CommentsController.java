@@ -30,36 +30,52 @@ public class CommentsController {
         this.commentsRepository = repository;
     }
 
-
     @GetMapping("/blogs/blog/{id}/comment")
-    public String showCommentBlog(@PathVariable ("id") int id, Model model) {
+    public String blogCommentForm(@PathVariable("id") int id, Model model) {
+        model.addAttribute("blog", blogsService.getBlogById(id));
         var comments = commentsRepository.findAll();
         model.addAttribute("comments", comments);
         model.addAttribute("comment", new Comment());
-
-        logger.info("Comment blog");
-
         return "comments/comment";
     }
 
 
+//    @GetMapping("/blogs/blog/{id}/comm")
+//    public String showCommentBlog(@PathVariable ("id") int id, Model model) {
+//        var comments = commentsRepository.findAll();
+//        model.addAttribute("comments", comments);
+//        model.addAttribute("comment", new Comment());
+//
+//        logger.info("Comment blog");
+//
+//        return "comments/comment";
+//    }
+
+
     @PostMapping("/blogs/blog/{id}/comment")
-    public String createNewComment(@PathVariable("id") Integer id, @Valid @ModelAttribute("comment") Comment comment, BindingResult errors) {
+    public String createNewComment(@PathVariable("id") Integer id, @Valid Comment comment, BindingResult errors) {
+
+        logger.info("HEllo: {}", comment);
         if (errors.hasErrors()) {
+            logger.info("Yep, I have error: {}", comment);
+            errors.getAllErrors().forEach(System.out::println);
             return "comments/comment";
         }
         logger.info("Comment: {}", comment);
         Blog blog = blogsService.getBlogById(id);
-        if (blog == null) {
+
+        if(blog == null){
             return "redirect:/blogs";
         }
+        //
         comment.setBlog(blog);
         commentsRepository.save(comment);
+
         blog.addComment(comment);
         blogsService.createAndEditBlog(blog);
         logger.info("Blog comment: {}", comment);
         logger.info("Blog comment: {}", blog);
-        return "redirect:/blogs/blog/" + id + "/comment";
+        return  "redirect:/blogs/blog/{id}";
     }
 
 

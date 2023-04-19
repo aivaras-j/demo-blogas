@@ -2,6 +2,7 @@ package com.example.demoblogas.blog;
 
 
 import com.example.demoblogas.comments.Comment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -42,6 +43,9 @@ public class Blog {
     @NotEmpty(message = "Blog imageUrl cannot be empty")
     private String imageUrl;
 
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();

@@ -13,7 +13,7 @@
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a th:href="@{/blogs}" class="nav-link px-2 link-secondary"><p data-th-text="#{header.home}"></p></a></li>
     <li><a th:href="@{/contact}" class="nav-link px-2 link-dark"><p data-th-text="#{header.contact}"></p></a></li>
-      <li><a th:href="@{/user/{id}/profile}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.profile}"></p></a></li>
+      <li><a th:href="@{/user/{id} (id=${user.id})/profile}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.profile}"></p></a></li>
       <li><a th:href="@{/user/logout}" sec:authorize="isAuthenticated()" class="nav-link px-2 link-dark"><p data-th-text="#{header.logout}"></p></a></li>
   </ul>
   <div class="col-md-3 div-login btn-group">

@@ -1,6 +1,7 @@
 package com.example.demoblogas.comments;
 
 import com.example.demoblogas.blog.Blog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -28,6 +29,9 @@ public class Comment {
     private String content;
 
     @NonNull
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
@@ -60,6 +64,18 @@ public class Comment {
         return blog;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -69,8 +85,4 @@ public class Comment {
                 '}';
     }
 
-    //    @Override
-//    public String toString() {
-//        return String.format("Comment: id=%s, name=%s, content=%s", id, name, content);
-//    }
 }
